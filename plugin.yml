@@ -1,0 +1,21 @@
+name: AIOMod
+author: BLOCKSTORM_
+version: 1.0-PreAlpha
+api: 3.0.0-Alpha11
+main: AIOMod\Loader
+commands:
+  lock:
+    default: op
+    description: RevengerPE Staff only
+  unlock: 
+    default: op
+    description: RevengerPE Staff only
+  playerinfo: 
+    default: op
+    description: RevengerPE Staff only
+  baninfo:
+    default: op
+    description: RevengerPE Staff only
+  locklist:
+    default: op
+    description: RevengerPE Staff only
