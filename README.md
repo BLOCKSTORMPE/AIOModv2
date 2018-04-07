@@ -14,6 +14,7 @@
 | /lock  | <PlayerName: Required>  | <Reason: Required>  | <Note: Optional> | aiomod.ban |
 | /unlock  | <PlayerName: Required>  | none | none | aiomod.unlock |
 | /baninfo  | <BanID: Required>  | none | none | aiomod.baninfo |
+| /playerinfo  | <Spielername: Required>  | none | none | aiomod.playerinfo |
 | /locklist  | none  | none | none | aiomod.locklist |
 
 This Plugin needs my report system as an Dependency!
