@@ -19,3 +19,6 @@ commands:
   locklist:
     default: op
     description: RevengerPE Staff only
+  notify:
+    default: op
+    description: turns system notifications on/off
