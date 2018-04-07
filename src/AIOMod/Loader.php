@@ -28,15 +28,15 @@ function randomString($length = 5) {
  }
 		public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool{
 			if(strtolower($cmd) == "locklist"){
-				if($sender->hasPermission("aiomod.lock")){
-					$files = scandir("/UniverseMC/AIOMod/Bans/");
+				if($sender->hasPermission("aiomod.locklist")){
+					$files = scandir("/AIOMod/Bans/");
 
 						foreach($files as $report){
 							$filename = str_replace(".yml", "", $report);
 								if($filename != "." && $filename != ".."){
 
-									$configr = new Config("/UniverseMC/AIOMod/Bans/".$filename.".yml", Config::YAML);
-									$configu = new Config("/UniverseMC/AIOMod/Spieler/".$configr->get("Name").".yml", Config::YAML);
+									$configr = new Config("/AIOMod/Bans/".$filename.".yml", Config::YAML);
+									$configu = new Config("/AIOMod/Spieler/".$configr->get("Name").".yml", Config::YAML);
 if($configr->get("Status") == "Aktiv"){
 									$grund = $configr->get("Grund");
 									$spieler = $configr->get("Name");
@@ -57,7 +57,7 @@ if($configr->get("Status") == "Aktiv"){
 			if(strtolower($cmd) == "unlock"){
 				if($sender->hasPermission("aiomod.unlock")){
 					if(isset($args[0])){
-						if(file_exists("/UniverseMC/AIOMod/Spieler/". $args[0] . ".yml")){
+						if(file_exists("/AIOMod/Spieler/". $args[0] . ".yml")){
 							$cfg = new Config("/UniverseMC/AIOMod/Spieler/". $args[0].".yml", Config::YAML);
 							if($cfg->get("Aktiv") != null){
 								$bcfg = new Config("/UniverseMC/AIOMod/Bans/".$cfg->get("Aktiv").".yml", Config::YAML);
@@ -80,9 +80,9 @@ if($configr->get("Status") == "Aktiv"){
 				}
 			}
 			if(strtolower($cmd) == "playerinfo"){
-				if($sender->hasPermission("aiomod.lock")){
+				if($sender->hasPermission("aiomod.playerinfo")){
 					if(isset($args[0])){
-						if(file_exists("/UniverseMC/AIOMod/Spieler/" . $args[0] . ".yml")){
+						if(file_exists("/AIOMod/Spieler/" . $args[0] . ".yml")){
 							$cfg = new Config("/UniverseMC/AIOMod/Spieler/" . $args[0] . ".yml", Config::YAML);
 							$sender->sendMessage($this->prefix."§bSpielerinformationen für §6". $args[0] . "§b:");
 							$sender->sendMessage($this->prefix."§bPunkte: §c". $cfg->get("Punkte")."");
@@ -108,9 +108,9 @@ if($configr->get("Status") == "Aktiv"){
 
 
 			if(strtolower($cmd) == "baninfo"){
-				if($sender->hasPermission("aiomod.lock")){
+				if($sender->hasPermission("aiomod.baninfo")){
 					if(isset($args[0])){
-						if(file_exists("/UniverseMC/AIOMod/Bans/" . $args[0] . ".yml")){
+						if(file_exists("/AIOMod/Bans/" . $args[0] . ".yml")){
 							$config = new Config("/UniverseMC/AIOMod/Bans/" . $args[0] . ".yml", Config::YAML);
 							$sender->sendMessage($this->prefix."§bBaninformationen für §6". $args[0] . ":");
 							$sender->sendMessage($this->prefix."§bSpieler: §6". $config->get("Name")."");
@@ -134,13 +134,13 @@ if($configr->get("Status") == "Aktiv"){
 
 					if($sender->hasPermission("aiomod.lock")){
 						if(isset($args[0]) || isset($args[1])){
-							if(file_exists("/UniverseMC/Jump/" . $args[0] . ".yml")){
-								$userconf = new Config("/UniverseMC/AIOMod/Spieler". $args[0] . ".yml", Config::YAML);
+							if(file_exists("/AIOMod/Spieler/" . $args[0] . ".yml")){
+								$userconf = new Config("/AIOMod/Spieler/". $args[0] . ".yml", Config::YAML);
 								if($userconf->get("Aktiv") == null){
 if(strtolower($args[1]) == "hacking" || strtolower($args[1]) == "hacks" || strtolower($args[1]) == "teaming" || strtolower($args[1]) == "team" || strtolower($args[1]) == "bugusing" || strtolower($args[1]) == "bug" || strtolower($args[1]) == "chatverhalten" || strtolower($args[1]) == "chat" || strtolower($args[1]) == "spamming" || strtolower($args[1]) == "spam" || strtolower($args[1]) == "werbung" || strtolower($args[1]) == "wer" || strtolower($args[1]) == "extrem" || strtolower($args[1]) == "ext"){
 								$id = $this->randomString();
-								$config = new Config("/UniverseMC/AIOMod/Bans/" . $id . ".yml", Config::YAML);
-								$uconf = new Config("/UniverseMC/AIOMod/Spieler/" . $args[0] . ".yml", Config::YAML);
+								$config = new Config("/AIOMod/Bans/" . $id . ".yml", Config::YAML);
+								$uconf = new Config("/AIOMod/Spieler/" . $args[0] . ".yml", Config::YAML);
 								$points = $uconf->get("Punkte");
 								$config->set("Name", $args[0]);
 								$config->set("Status", "Aktiv");
@@ -293,9 +293,9 @@ return true;
 public function onChat(PlayerChatEvent $event){
 	$player = $event->getPlayer();
 	$name = $player->getName();
-	$ucfg = new Config("/UniverseMC/AIOMod/Spieler/".$name.".yml", Config::YAML);
+	$ucfg = new Config("/AIOMod/Spieler/".$name.".yml", Config::YAML);
 	if($ucfg->get("Aktiv") != null){
-		$rfile = new Config("/UniverseMC/AIOMod/Bans/".$ucfg->get("Aktiv").".yml", Config::YAML);
+		$rfile = new Config("/AIOMod/Bans/".$ucfg->get("Aktiv").".yml", Config::YAML);
 		if($rfile->get("Typ") == "Mute"){
 			$player->sendMessage($this->prefix . " §cDir wurde der Zugang zum Chat gesperrt. \n§cGrund: §4".$rfile->get("Grund")."§7[§4".$ucfg->get("Aktiv")."§7] \n§cGemutet bis: §c".$rfile->get("Dauer")."");
 			$event->setCancelled(true);
@@ -308,11 +308,11 @@ public function onJoin(PlayerPreLoginEvent $event){
   	 $name = $player->getName();
   	 $ip = $player->getAddress();
 
-  	 if(file_exists("/UniverseMC/AIOMod/Spieler/".$name.".yml")){
-  	 	 	$banned = new Config("/UniverseMC/AIOMod/Spieler/".$name.".yml", Config::YAML);
+  	 if(file_exists("/AIOMod/Spieler/".$name.".yml")){
+  	 	 	$banned = new Config("/AIOMod/Spieler/".$name.".yml", Config::YAML);
   	 	 if($banned->get("Aktiv") != null){
   				$id = $banned->get("Aktiv");
-  				$cfg = new Config("/UniverseMC/AIOMod/Bans/" . $id . ".yml", Config::YAML);
+  				$cfg = new Config("/AIOMod/Bans/" . $id . ".yml", Config::YAML);
   	 	 	 if($cfg->get("Dauer") == "Permanent"){
   	 	 	 	 $player->close("§cDein Account auf dem §bNetzwerk§c wurde gesperrt. \n §cGrund: §e" . $banned->get("Grund") . "§7[§c" . $cfg->get("Aktiv") . "§7] §7| §cDauer: §4PERMANENT \n§aEA: §b§lrevengermc.de/support");
   	 	 	 }else{
@@ -332,7 +332,7 @@ public function onJoin(PlayerPreLoginEvent $event){
   	 	 	 }
 
   	 }else{
-  		$banned = new Config("/UniverseMC/AIOMod/Spieler/".$name.".yml", Config::YAML);
+  		$banned = new Config("/AIOMod/Spieler/".$name.".yml", Config::YAML);
    $banned->set("Aktiv", null);
    $banned->set("Punkte", null);
    $banned->save();
@@ -350,9 +350,9 @@ public function onJoin(PlayerPreLoginEvent $event){
 
     public function onRun($tick) {
 			foreach(Server::getInstance()->getOnlinePlayers() as $p){
-				$config = new Config("/UniverseMC/AIOMod/Spieler/". $p->getName() . ".yml", Config::YAML);
+				$config = new Config("/AIOMod/Spieler/". $p->getName() . ".yml", Config::YAML);
 				if($config->get("Aktiv") != null){
-					$cfg = new Config("/UniverseMC/AIOMod/Bans/". $config->get("Aktiv") . ".yml", Config::YAML);
+					$cfg = new Config("/AIOMod/Bans/". $config->get("Aktiv") . ".yml", Config::YAML);
 						if($cfg->get("Typ") == "Ban"){
 							if(new DateTime("now") < new DateTime($cfg->get("Dauer"))){
 							$reason = $cfg->get("Grund");
@@ -377,16 +377,16 @@ public function onJoin(PlayerPreLoginEvent $event){
 						}
 				}
 			}
-        $new  = scandir("/UniverseMC/AIOMod/Bans/");
+        $new  = scandir("/AIOMod/Bans/");
         $tobc = array_diff($new, $this->oldreports);
         if ($tobc !== []) {
             foreach ($tobc as $repfile) {
-                $rep = yaml_parse_file("/UniverseMC/AIOMod/Bans/" . $repfile);
+                $rep = yaml_parse_file("/AIOMod/Bans/" . $repfile);
                 foreach (Server::getInstance()->getOnlinePlayers() as $p) {
                     if ($p->hasPermission("universe.notify")) {
                         foreach(Server::getInstance()->getOnlinePlayers() as $p){
-										if(file_exists("/UniverseMC/Notify/".$p->getName().".yml")){
-										$tcfg = new Config("/UniverseMC/Notify/".$p->getName().".yml", Config::YAML);
+										if(file_exists("/Notify/".$p->getName().".yml")){
+										$tcfg = new Config("/Notify/".$p->getName().".yml", Config::YAML);
 										if($tcfg->get("Notify") == true){
 											$p->sendMessage("§7[§c§lAIOMod§r§7]§b< BAN §7| §c". $rep["Name"] ." §7| §c".$rep["Grund"] . "§7 | §c".$rep["Dauer"]." §7|§b>§r");
 										}
