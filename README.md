@@ -15,3 +15,9 @@
 | /unlock  | <PlayerName: Required>  | none | none | aiomod.unlock |
 | /baninfo  | <BanID: Required>  | none | none | aiomod.baninfo |
 | /locklist  | none  | none | none | aiomod.locklist |
+
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
