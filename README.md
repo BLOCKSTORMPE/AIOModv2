@@ -1,9 +1,9 @@
 # AIOModv2
-[x] Multiserver-System
-[x] Systemwide-Broadcast 
-[x] Systemwide-Sync
-[x] Predefined Ban-Reasons
-[x] Time getting more
+- [x] Multiserver-System
+- [x] Systemwide-Broadcast 
+- [x] Systemwide-Sync
+- [x] Predefined Ban-Reasons
+- [x] Time getting more
 
 => This plugin was made for the RevengerMC Network, you are allowed to modify the main file of this plugin, but you are not allowed to claim this plugin or any parts of it as yours. 
 => You are not allowed to change the name and / or the author of this plugin, it has to identifiable as AIOMod.
@@ -16,8 +16,3 @@
 | /baninfo  | <BanID: Required>  | none | none | aiomod.baninfo |
 | /locklist  | none  | none | none | aiomod.locklist |
 
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
