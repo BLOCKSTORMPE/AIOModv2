@@ -4,6 +4,7 @@ use pocketmine\scheduler\PluginTask;
 use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
 use pocketmine\{Server, Player};
 use pocketmine\utils\{Config, Scheduler};
+use pocketmine\plugin\PluginTask;
 use pocketmine\command\{Command, CommandSender, CommandExecutor};
 use pocketmine\event\Listener;
 use DateTime;
