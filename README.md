@@ -16,3 +16,6 @@
 | /baninfo  | <BanID: Required>  | none | none | aiomod.baninfo |
 | /locklist  | none  | none | none | aiomod.locklist |
 
+This Plugin needs my report system as an Dependency!
+You can download it on this Github Account
+Have fun :)
