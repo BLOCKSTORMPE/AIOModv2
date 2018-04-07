@@ -1,4 +1,6 @@
 # AIOModv2
+AIOMod - - The all in one moderation system! With bans, mutes, global broadcasting systems and much more!
+
 - [x] Multiserver-System
 - [x] Systemwide-Broadcast 
 - [x] Systemwide-Sync
