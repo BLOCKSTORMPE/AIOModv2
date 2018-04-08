@@ -18,7 +18,6 @@ AIOMod - - The all in one moderation system! With bans, mutes, global broadcasti
 | /baninfo  | <BanID: Required>  | none | none | aiomod.baninfo |
 | /playerinfo  | <Spielername: Required>  | none | none | aiomod.playerinfo |
 | /locklist  | none  | none | none | aiomod.locklist |
-
-This Plugin needs my report system as an Dependency!
-You can download it on this Github Account
-Have fun :)
+ 
+ This Plugin no longer needs the ReportSystem as an dependency, I integrated the notify system in the AIOMod system.
+ 
