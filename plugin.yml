@@ -6,19 +6,19 @@ main: AIOMod\Loader
 commands:
   lock:
     default: op
-    description: RevengerPE Staff only
+    description: AIOMod Lock Command
   unlock: 
     default: op
-    description: RevengerPE Staff only
+    description: AIOMod unlock Command
   playerinfo: 
     default: op
-    description: RevengerPE Staff only
+    description: AIOMod playerinfo Command
   baninfo:
     default: op
-    description: RevengerPE Staff only
+    description: AIOMod baninfo
   locklist:
     default: op
-    description: RevengerPE Staff only
+    description: AIOMod locklist command
   notify:
     default: op
     description: turns system notifications on/off
