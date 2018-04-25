@@ -4,12 +4,12 @@ namespace AIOMod;
 use AIOMod\Tasks\Check;
 use AIOMod\Listener\ChatListener;
 use AIOMod\Listener\JoinListener;
-#use AIOMod\Command\NotifyCommand;
+use AIOMod\Command\NotifyCommand;
 use pocketmine\scheduler\PluginTask;
 
 use pocketmine\{Server, Player};
 use pocketmine\utils\{Config, Scheduler};
-#use pocketmine\plugin\PluginTask;
+use pocketmine\plugin\PluginTask;
 use pocketmine\command\{Command, CommandSender, CommandExecutor};
 use pocketmine\event\Listener;
 
@@ -24,7 +24,7 @@ class Loader extends PluginBase implements Listener{
 @mkdir("/AIOMod/Bans/");
 @mkdir("/AIOMod/Spieler/");
 @mkdir("/AIOMod/Notify/");
-		$oldreports = scandir("/AIOMod/Bans");
+		$oldreports = scandir("/AIOMod/Bans/");
 		$this->getServer()->getPluginManager()->registerEvents(new JoinListener($this), $this);
 $this->getServer()->getPluginManager()->registerEvents(new ChatListener($this), $this);
 	$this->getServer()->getScheduler()->scheduleRepeatingTask(new Check($this, $oldreports), 20);
