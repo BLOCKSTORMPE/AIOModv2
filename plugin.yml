@@ -1,7 +1,7 @@
 name: AIOMod
 author: BLOCKSTORM_
 version: 1.0-PreAlpha
-api: 3.0.0-Alpha11
+api: 3.0.0-Alpha12
 main: AIOMod\Loader
 commands:
   lock:
