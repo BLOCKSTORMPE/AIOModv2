@@ -4,13 +4,13 @@ use pocketmine\{Player, Server};
 use pocketmine\utils\Config;
 use DateTime;
 use pocketmine\network\mcpe\protocol\ModalFormRequestPacket;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use AIOMod\Loader;
-class Check extends PluginTask{
+class Check extends Task{
 	public function __construct($plugin, $oldreports) {
         $this->plugin = $plugin;
         $this->oldreports = $oldreports;
-        parent::__construct($plugin);
+        
     }
 
     public function onRun($tick) {
