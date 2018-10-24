@@ -9,10 +9,10 @@ use pocketmine\scheduler\PluginTask;
 
 use pocketmine\{Server, Player};
 use pocketmine\utils\{Config, Scheduler};
-#use pocketmine\plugin\PluginTask;
+#use pocketmine\plugin\Task;
 use pocketmine\command\{Command, CommandSender, CommandExecutor};
 use pocketmine\event\Listener;
-
+use pocketmine\scheduler\TaskScheduler;
 use pocketmine\plugin\PluginBase;
 
 class Loader extends PluginBase implements Listener{
@@ -27,7 +27,7 @@ class Loader extends PluginBase implements Listener{
 		$oldreports = scandir("/AIOMod/Bans");
 		$this->getServer()->getPluginManager()->registerEvents(new JoinListener($this), $this);
 $this->getServer()->getPluginManager()->registerEvents(new ChatListener($this), $this);
-	$this->getServer()->getScheduler()->scheduleRepeatingTask(new Check($this, $oldreports), 20);
+	$this->getScheduler()->scheduleRepeatingTask(new Check($this, $oldreports), 20);
 		}
 function randomString($length = 5) {
     $str = "";
