@@ -1,4 +1,4 @@
-<?php
+- <?php
 namespace AIOMod\Tasks;
 use pocketmine\{Player, Server};
 use pocketmine\utils\Config;
@@ -19,14 +19,38 @@ class Check extends Task{
 				if($config->get("Aktiv") != null){
 					$cfg = new Config("/AIOMod/Bans/". $config->get("Aktiv") . ".yml", Config::YAML);
 						if($cfg->get("Typ") == "Ban"){
-							if(new DateTime("now") < new DateTime($cfg->get("Dauer"))){
-							$reason = $cfg->get("Grund");
+             if($cfg->get("Dauer") == "Permanent"){
+                  $time = "Permanent";
+$reason = $cfg->get("Grund");
 							$id = $config->get("Aktiv");
 							$dauer = $cfg->get("Dauer");
 								$data = [
 									'type' => 'form',
 									'title' => "§cDu wurdest gebannt",
 									'content' => "   §cDein Account wurde aufgrund von §eFehlverhalten §cvon einem Teammitglied gesperrt \n §eGrund: §4". $cfg->get("Grund"). "§7[§4". $config->get("Aktiv") ."§7] \n §eGebannt bis: §c" . $cfg->get("Dauer") ."(!) \n §eDu kannst einen Entbannungsantrag im §cForum §e stellen: \n §bhttps://revengermc.de/forum/",
+									'buttons' => []
+								];
+								$pk = new ModalFormRequestPacket();
+								$pk->formId = 73;
+								$pk->formData = json_encode($data);
+								$p->dataPacket($pk);
+							}else{
+								$cfg->set("Status", "Inaktiv");
+								$cfg->save();
+								$config->set("Aktiv", null);
+								$config->save();
+							}
+            }else{
+                   $time = new DateTime($cfg->get("Dauer"));
+            
+							if(new DateTime("now") < $time){
+							$reason = $cfg->get("Grund");
+							$id = $config->get("Aktiv");
+							$dauer = $cfg->get("Dauer");
+								$data = [
+									'type' => 'form',
+									'title' => "§cDu wurdest gebannt",
+									'content' => "   §cDein Account wurde aufgrund von §eFehlverhalten §cvon einem Teammitglied gesperrt \n §eGrund: §4". $cfg->get("Grund"). "§7[§4". $config->get("Aktiv") ."§7] \n §eGebannt bis: §c" . $time ."(!) \n §eDu kannst einen Entbannungsantrag im §cForum §e stellen: \n §bhttps://revengermc.de/forum/",
 									'buttons' => []
 								];
 								$pk = new ModalFormRequestPacket();
