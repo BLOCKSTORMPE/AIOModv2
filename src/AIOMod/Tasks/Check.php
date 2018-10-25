@@ -1,4 +1,4 @@
-- <?php
+<?php
 namespace AIOMod\Tasks;
 use pocketmine\{Player, Server};
 use pocketmine\utils\Config;
